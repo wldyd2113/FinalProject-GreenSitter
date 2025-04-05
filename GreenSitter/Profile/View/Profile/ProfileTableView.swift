@@ -78,9 +78,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
              profileCell.bodyLabel.text = user?.levelPoint.rawValue
              
              // Fetch level image URL based on user level
-             if let level = user?.levelPoint, let imageURLString = imageURLForLevel(level), let httpsURLString = convertToHttpsURL(gsURL: imageURLString), let imageURL = URL(string: httpsURLString) {
+            if let level = user?.levelPoint, let imageURLString = profileViewModel.imageURLForLevel(level), let httpsURLString = loginViewModel.convertToHttpsURL(gsURL: imageURLString), let imageURL = URL(string: httpsURLString) {
                  // Asynchronously load the image
-                 downloadImage(from: httpsURLString) { image in
+                 profileViewModel.downloadImage(from: httpsURLString) { image in
                      DispatchQueue.main.async {
                          if let image = image {
                              profileCell.iconImageView.image = image
@@ -184,9 +184,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let writeReviewViewController = WriteReviewViewController()
             self.navigationController?.pushViewController(writeReviewViewController, animated: true)
         case (2, 0):
-            logout()
+            profileViewModel.logout()
         case (2, 1):
-            accountDeletion()
+            profileViewModel.accountDeletion()
         case(3,0):
             let serviceViewController = ServiceViewController()
             self.navigationController?.pushViewController(serviceViewController, animated: true)

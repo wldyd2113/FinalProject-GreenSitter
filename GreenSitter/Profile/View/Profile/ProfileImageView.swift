@@ -10,8 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import Photos
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+extension ProfileViewController {
     @objc func changeImageTap() {
         // 권한 상태를 확인합니다
         PHPhotoLibrary.requestAuthorization { status in
@@ -65,7 +64,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let userId = Auth.auth().currentUser?.uid ?? ""
         
         if let editedImage = info[.editedImage] as? UIImage {
-            uploadImage(image: editedImage) { [weak self] imageURL in
+            profileViewModel.uploadImage(image: editedImage) { [weak self] imageURL in
                 guard let self = self else { return }
                 if let imageURL = imageURL {
                     self.updatePostsImageURL(forUserId: userId, imageURL: imageURL)
@@ -74,7 +73,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 }
             }
         } else if let originalImage = info[.originalImage] as? UIImage {
-            uploadImage(image: originalImage) { [weak self] imageURL in
+            profileViewModel.uploadImage(image: originalImage) { [weak self] imageURL in
                 guard let self = self else { return }
                 if let imageURL = imageURL {
                     self.updatePostsImageURL(forUserId: userId, imageURL: imageURL)

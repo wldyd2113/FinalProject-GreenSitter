@@ -13,13 +13,31 @@ import Combine
 import AuthenticationServices
 import Photos
 
-class ProfileViewController: UIViewController, LoginViewControllerDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+class ProfileViewController: UIViewController, LoginViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    // 로그인 완료 후 처리
     func didCompleteLogin() {
-        setupView()
-        fetchUserFirebase()
-        setupTextField()
-        self.tableView.reloadData()
+        dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
+            self.setupView()
+            self.setupTextField()
+            self.setupBindings()
+            self.fetchUserExperience()
+
+            self.profileViewModel.fetchUserFirebase {
+                self.tableView.reloadData()
+            }
+        }
     }
+
+    // Apple 로그인 UI를 띄울 앵커를 제공
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window ?? ASPresentationAnchor()
+    }
+
+    
+    let profileViewModel = ProfileViewModel()
+    let loginViewModel = LoginViewModel()
+    
 
     // MARK: - Properties
     var sectionTitle = ["내 정보", "돌봄 정보", "시스템", "이용약관 및 개인정보 처리방침" ]
@@ -90,14 +108,20 @@ class ProfileViewController: UIViewController, LoginViewControllerDelegate, ASAu
         super.viewDidLoad()
         setupBindings() //위치변경 되었을때 뷰에 로드해줌
         fetchUserExperience()
-        fetchUserLevelAndUpdateImage()
-        
+        profileViewModel.fetchUserLevelAndUpdateImage { [weak self] image in
+            DispatchQueue.main.async {
+                self?.imageButton.setImage(image, for: .normal)
+            }
+            
+        }
         // 로그인 상태가 아닐 때 로그인 화면 표시
         if Auth.auth().currentUser == nil {
             showLoginScreen()
         } else {
             setupView()
-            fetchUserFirebase()
+            profileViewModel.fetchUserFirebase { [weak self] in
+                self?.tableView.reloadData()
+            }
             setupTextField()
         }
         
@@ -105,13 +129,14 @@ class ProfileViewController: UIViewController, LoginViewControllerDelegate, ASAu
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchUserFirebase()
         fetchUserExperience()
         if Auth.auth().currentUser == nil {
             view.removeAllSubviews()
             showLoginScreen()
         } else {
-            fetchUserFirebase()
+            profileViewModel.fetchUserFirebase { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
     
@@ -262,7 +287,10 @@ class ProfileViewController: UIViewController, LoginViewControllerDelegate, ASAu
         
     }
     @objc func handleNicknameChanged() {
-        fetchUserFirebase()
+        profileViewModel.fetchUserFirebase { [weak self] in
+            self?.tableView.reloadData()
+            
+        }
     }
     
     private func setupBindings() {
@@ -272,6 +300,15 @@ class ProfileViewController: UIViewController, LoginViewControllerDelegate, ASAu
                 self?.updateUI(with: user)
             }
             .store(in: &cancellables)
+        
+        profileViewModel.$levelImage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] image in
+                self?.imageButton.setImage(image, for: .normal)
+                
+            }
+            .store(in: &cancellables)
+        
     }
     private func updateUI(with user: User?) {
         tableView.reloadData()

@@ -18,7 +18,7 @@ class LoginViewModel: ObservableObject {
     
     let db = Firestore.firestore()
     
-    private init() {}
+//    private init() {}
 
     func firebaseFetch(docId: String, completion: @escaping () -> Void) {
         db.collection("users").document(docId).getDocument { (document, error) in

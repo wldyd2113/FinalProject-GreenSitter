@@ -35,6 +35,7 @@
 		3B6DE1AC2C72D24B009DD41A /* CareRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AB2C72D24B009DD41A /* CareRecordViewController.swift */; };
 		3B6DE1AE2C72D457009DD41A /* CareRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */; };
 		3B6DE1B02C72D483009DD41A /* CareRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AF2C72D483009DD41A /* CareRecordTableViewCell.swift */; };
+		3B72EAEA2DA2564600FA9ABB /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */; };
 		3B7D8F3D2C75686700008F22 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F3C2C75686700008F22 /* WriteReviewViewController.swift */; };
 		3B7D8F3F2C75689C00008F22 /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F3E2C75689C00008F22 /* WriteReviewViewModel.swift */; };
 		3B7D8F492C75890A00008F22 /* ReceiveReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F482C75890A00008F22 /* ReceiveReviewViewController.swift */; };
@@ -180,6 +181,7 @@
 		3B6DE1AB2C72D24B009DD41A /* CareRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordViewController.swift; sourceTree = "<group>"; };
 		3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordViewModel.swift; sourceTree = "<group>"; };
 		3B6DE1AF2C72D483009DD41A /* CareRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordTableViewCell.swift; sourceTree = "<group>"; };
+		3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		3B7D8F3C2C75686700008F22 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		3B7D8F3E2C75689C00008F22 /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		3B7D8F482C75890A00008F22 /* ReceiveReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveReviewViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +420,15 @@
 				3B7D8F4C2C7589A200008F22 /* ReceiveReviewTableViewCell.swift */,
 			);
 			path = ProfileCell;
+			sourceTree = "<group>";
+		};
+		3B72EAE82DA2560700FA9ABB /* Nickname */ = {
+			isa = PBXGroup;
+			children = (
+				97D1BE9A2C6C93CD00F7A983 /* NicknameViewController.swift */,
+				3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */,
+			);
+			path = Nickname;
 			sourceTree = "<group>";
 		};
 		3BAD24642C77347A004C2DBA /* WebView */ = {
@@ -720,8 +731,8 @@
 			children = (
 				3B25346D2D93F84B00667398 /* Profile */,
 				3B49574A2DA139B8009E3336 /* AboutMe */,
+				3B72EAE82DA2560700FA9ABB /* Nickname */,
 				3BAD24642C77347A004C2DBA /* WebView */,
-				97D1BE9A2C6C93CD00F7A983 /* NicknameViewController.swift */,
 				3B61C6972C71CB1600337B66 /* SelfIntroductionViewController.swift */,
 				3B6DE1AB2C72D24B009DD41A /* CareRecordViewController.swift */,
 				3B8348112C74BF6600359E85 /* LeavePlantListViewController.swift */,
@@ -888,6 +899,7 @@
 				97D1BEAF2C6C9DB100F7A983 /* BundleExtension.swift in Sources */,
 				3BAD24662C773DD0004C2DBA /* LocationServiceViewController.swift in Sources */,
 				97934E2B2C62FE0F00B38E0A /* SearchMapViewController.swift in Sources */,
+				3B72EAEA2DA2564600FA9ABB /* NicknameViewModel.swift in Sources */,
 				3B49574C2DA13A16009E3336 /* AboutMeViewModel.swift in Sources */,
 				97D1BE7E2C6C8BBA00F7A983 /* PlanProgressBar.swift in Sources */,
 				97D1BE962C6C93A100F7A983 /* FirestoreManager.swift in Sources */,

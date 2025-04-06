@@ -41,7 +41,7 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: "introductionTableCell", for: indexPath) as! IntroductionTableCell
             let aboutMeText = user?.aboutMe ?? "자기소개를 입력해주세요"
             print("Cell for row at indexPath \(indexPath): aboutMeText = \(aboutMeText)")
-            (cell as! IntroductionTableCell).bodyLabel.text = aboutMeText
+            (cell as! IntroductionTableCell).bodyLabel.text = aboutViewModel.aboutMe
             (cell as! IntroductionTableCell).bodyLabel.textColor = UIColor(named: "LabelsPrimary")
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! CustomTableCell
@@ -125,7 +125,7 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
             if currentUserID == userId {
                 let editButton = UIButton(type: .system)
                 editButton.setTitle("수정하기", for: .normal)
-                editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+                editButton.addTarget(self, action: #selector(handleEditButton), for: .touchUpInside)
                 editButton.translatesAutoresizingMaskIntoConstraints = false
                 headerView.addSubview(editButton)
                 
@@ -163,6 +163,9 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return defaultHeaderView
     }
+    @objc private func handleEditButton() {
+        aboutViewModel.editButtonTapped()
+    }
 
 
     //MARK: - cell 클릭시 발생하는 이벤트
@@ -179,4 +182,5 @@ extension AboutMeViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
     }
+    
 }

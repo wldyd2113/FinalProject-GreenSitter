@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import Combine
 
 class AboutMeViewController: UIViewController {
     private let reportsAndBlocksViewModel = ReportsAndBlocksViewModel()
@@ -16,7 +17,9 @@ class AboutMeViewController: UIViewController {
     let db = Firestore.firestore()
     var user: User?
     var userId: String
-    
+    private var cancellables = Set<AnyCancellable>()
+    let aboutViewModel = AboutMeViewModel()
+
     init(userId: String) {
         self.userId = userId
         super.init(nibName: nil, bundle: nil)
@@ -120,15 +123,16 @@ class AboutMeViewController: UIViewController {
         tableView.backgroundColor = UIColor(named: "BGSecondary")
         return tableView
     }()
+    
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BGSecondary")
-        
+        bindViewModel()
+
         setupNavigationBar()
-        
-        tableView.register(IntroductionTableCell.self, forCellReuseIdentifier: "introductionTableCell")
-        tableView.register(CustomTableCell.self, forCellReuseIdentifier: "customTableCell")
+        setupTableView()
         
         view.addSubview(circleView)
         view.addSubview(profileImage)
@@ -183,14 +187,68 @@ class AboutMeViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-        fetchUserFirebase(userId: userId)
+        aboutViewModel.fetchUserFirebase(userId: userId)
         NotificationCenter.default.addObserver(self, selector: #selector(self.userAboutMeUpdated), name: NSNotification.Name("UserAboutMeUpdated"), object: nil)
         fetchUserExperience()
         
     }
+    private func bindViewModel() {
+        aboutViewModel.$shouldPresentEditView
+            .receive(on: RunLoop.main)
+            .sink { [weak self] shouldPresent in
+                guard shouldPresent else { return }
+                let vc = SelfIntroductionViewController()
+                if let sheet = vc.presentationController as? UISheetPresentationController {
+                    sheet.detents = [.custom { _ in 400 }]
+                    sheet.preferredCornerRadius = 20
+                }
+                self?.present(vc, animated: true)
+            }
+            .store(in: &cancellables)
+        
+        aboutViewModel.$nickname
+            .receive(on: RunLoop.main)
+            .sink { [weak self] nickname in
+                self?.nicknameLabel.text = nickname
+            }
+            .store(in: &cancellables)
+        
+        aboutViewModel.$levelPoint
+            .receive(on: RunLoop.main)
+            .sink { [weak self] level in
+                self?.levelLabel.text = level
+            }
+            .store(in: &cancellables)
+        
+        aboutViewModel.$locationAddress
+            .receive(on: RunLoop.main)
+            .sink { [weak self] location in
+                self?.locationLabel.text = location
+            }
+            .store(in: &cancellables)
+        
+        aboutViewModel.$profileImage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] image in
+                self?.profileImage.image = image ?? UIImage(named: "로고7")
+            }
+            .store(in: &cancellables)
+        
+        aboutViewModel.$aboutMe
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+            .store(in: &cancellables)
+    }
+    private func setupTableView() {
+        tableView.register(IntroductionTableCell.self, forCellReuseIdentifier: "introductionTableCell")
+        tableView.register(CustomTableCell.self, forCellReuseIdentifier: "customTableCell")
+    }
+
     @objc func userAboutMeUpdated() {
         // 유저 데이터를 다시 불러오기
-        fetchUserFirebase(userId: userId)
+        aboutViewModel.fetchUserFirebase(userId: userId)
     }
     
     deinit {
@@ -330,4 +388,6 @@ class AboutMeViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
 }

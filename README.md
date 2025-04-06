@@ -1,6 +1,3 @@
-# FinalProject-GreenSitter
-앱스쿨 5기 떡잎마을방법대 최종 프로젝트
-
 ## 📌 프로젝트 소개
 <table>
   <tr>

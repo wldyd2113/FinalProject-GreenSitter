@@ -14,6 +14,7 @@ class NicknameViewController: UIViewController,UITextFieldDelegate {
     // MARK: - Properties
     var user: User?
     let db = Firestore.firestore()
+    let nickNameViewModel = NicknameViewModel()
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -56,7 +57,7 @@ class NicknameViewController: UIViewController,UITextFieldDelegate {
         button.setTitle("완료", for: .normal)
         button.backgroundColor = UIColor(named: "DominentColor")
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(completeButtonTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleCompleteButtonTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -71,6 +72,10 @@ class NicknameViewController: UIViewController,UITextFieldDelegate {
         
         view.backgroundColor = .bgPrimary
         nicknameTextfield.delegate = self
+        nickNameViewModel.onNicknameUpdateComplete = { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
         view.addSubview(titleLabel)
         view.addSubview(closeButton)
         view.addSubview(nicknameTextfield)
@@ -96,7 +101,7 @@ class NicknameViewController: UIViewController,UITextFieldDelegate {
             completeButton.widthAnchor.constraint(equalToConstant: 350),
             completeButton.heightAnchor.constraint(equalToConstant: 45)
         ])
-        fetchUserFirebase()
+        nickNameViewModel.fetchUserFirebase()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -106,5 +111,14 @@ class NicknameViewController: UIViewController,UITextFieldDelegate {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc func closeButtonTap() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleCompleteButtonTap() {
+        nickNameViewModel.nickname = nicknameTextfield.text ?? ""
+        nickNameViewModel.completeButtonTap()
     }
 }

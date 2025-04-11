@@ -12,15 +12,25 @@ import Combine
 //
 
 class NicknameViewModel: ObservableObject {
-    //MARK: - 닫기 버튼 Method
-    @objc func closeButtonTap() {
-        dismiss(animated: true, completion: nil)
-    }
+    @Published var curretNickname: String = ""
+    @Published var nickname: String = ""
+    @Published var nicknameStatus: (text: String, color: UIColor) = ("", .black)
+    @Published var isLoading: Bool = false
     
+    private let db = Firestore.firestore()
+    private var cancellables = Set<AnyCancellable>()
+    
+    // 닉네임 수정 완료 후, 닉네임 창을 닫기 위해 ViewController에 알리는 클로저
+    var onNicknameUpdateComplete: (() -> Void)?
+
+        
     //MARK: - 닉네임 변경 메소드
     @objc func completeButtonTap() {
-        guard let nickname = nicknameTextfield.text, !nickname.isEmpty else { return }
-        
+        guard  !nickname.isEmpty else {
+            nicknameStatus = ("닉네임을 입력해주세요.", .red)
+            return
+        }
+        isLoading = true
         // 닉네임 중복 검사
         db.collection("users").whereField("nickname", isEqualTo: nickname).getDocuments { [weak self] (querySnapshot, error) in
             guard let self = self else { return }
@@ -32,19 +42,13 @@ class NicknameViewModel: ObservableObject {
             
             if let documents = querySnapshot?.documents, !documents.isEmpty {
                 // 닉네임이 이미 사용 중일 때
-                DispatchQueue.main.async {
-                    self.nicknameStatusLabel.text = "이미 사용 중인 닉네임입니다."
-                    self.nicknameStatusLabel.textColor = .red
-                }
+                    self.nicknameStatus = ("이미 사용 중인 닉네임입니다.",.red)
+                
             } else {
                 // 닉네임이 사용 가능할 때
-                DispatchQueue.main.async {
-                    self.nicknameStatusLabel.text = "사용 가능한 닉네임입니다."
-                    self.nicknameStatusLabel.textColor = .green
-                    self.updateNickname(nickname)
-                    NotificationCenter.default.post(name: Notification.Name("NicknameChanged"), object: nil)
-                    self.dismiss(animated: true, completion: nil)
-                }
+                    self.nicknameStatus = ("사용 가능한 닉네임입니다.", .green)
+                    self.updateNickname(self.nickname)
+                
             }
         }
     }
@@ -102,6 +106,9 @@ class NicknameViewModel: ObservableObject {
             
             guard let documents = querySnapshot?.documents, !documents.isEmpty else {
                 print("No matching documents found in posts collection")
+                DispatchQueue.main.async {
+                    self.onNicknameUpdateComplete?()
+                }
                 return
             }
             
@@ -196,7 +203,7 @@ class NicknameViewModel: ObservableObject {
                 print("Document data: \(data)") // Firestore에서 가져온 데이터 출력
                 DispatchQueue.main.async {
                     if let nickname = data["nickname"] as? String {
-                        self.nicknameTextfield.placeholder = nickname
+                        self.curretNickname = nickname
                         print("Nickname in UITextField: \(nickname)") // 닉네임 출력
                     } else {
                         print("No nickname found in data")

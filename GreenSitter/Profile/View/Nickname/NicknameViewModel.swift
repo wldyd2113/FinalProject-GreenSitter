@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import Combine
+//
 
 class NicknameViewModel: ObservableObject {
     //MARK: - 닫기 버튼 Method

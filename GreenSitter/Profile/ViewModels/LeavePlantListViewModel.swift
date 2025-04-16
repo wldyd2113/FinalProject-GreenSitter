@@ -12,6 +12,9 @@ import FirebaseStorage
 import UIKit
 
 class LeavePlantListViewModel: ObservableObject {
+    
+    private let db = Firestore.firestore()
+    @Published var post: [Post] = []
     //MARK: - Post데이터 가져오기
     func fetchPostFirebase() {
         // 현재 로그인된 사용자의 userId 가져오기
@@ -73,11 +76,6 @@ class LeavePlantListViewModel: ObservableObject {
                 
                 // Post 배열에 추가
                 self.post.append(post)
-                
-                // 테이블 뷰 업데이트
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
             }
         }
     }

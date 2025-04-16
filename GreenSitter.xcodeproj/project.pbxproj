@@ -43,7 +43,6 @@
 		3B7D8F4B2C75898B00008F22 /* ReceiveReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F4A2C75898B00008F22 /* ReceiveReviewViewModel.swift */; };
 		3B7D8F4D2C7589A200008F22 /* ReceiveReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F4C2C7589A200008F22 /* ReceiveReviewTableViewCell.swift */; };
 		3B8348122C74BF6600359E85 /* LeavePlantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8348112C74BF6600359E85 /* LeavePlantListViewController.swift */; };
-		3B8348142C74C0F800359E85 /* LeavePlantListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8348132C74C0F800359E85 /* LeavePlantListModel.swift */; };
 		3BAD24632C77340E004C2DBA /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD24622C77340E004C2DBA /* ServiceViewController.swift */; };
 		3BAD24662C773DD0004C2DBA /* LocationServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD24652C773DD0004C2DBA /* LocationServiceViewController.swift */; };
 		3BAD24682C773E2A004C2DBA /* PersonalinfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD24672C773E2A004C2DBA /* PersonalinfomationViewController.swift */; };
@@ -194,7 +193,6 @@
 		3B8348082C748CD300359E85 /* AddCareProviderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCareProviderViewModel.swift; sourceTree = "<group>"; };
 		3B8348092C748CD300359E85 /* MainPostListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostListViewModel.swift; sourceTree = "<group>"; };
 		3B8348112C74BF6600359E85 /* LeavePlantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeavePlantListViewController.swift; sourceTree = "<group>"; };
-		3B8348132C74C0F800359E85 /* LeavePlantListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeavePlantListModel.swift; sourceTree = "<group>"; };
 		3BAD24622C77340E004C2DBA /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		3BAD24652C773DD0004C2DBA /* LocationServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceViewController.swift; sourceTree = "<group>"; };
 		3BAD24672C773E2A004C2DBA /* PersonalinfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalinfomationViewController.swift; sourceTree = "<group>"; };
@@ -442,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				3B8348112C74BF6600359E85 /* LeavePlantListViewController.swift */,
-				3B76B5CE2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift */,
 			);
 			path = LeavePlanList;
 			sourceTree = "<group>";
@@ -709,8 +706,8 @@
 				3B49574B2DA13A16009E3336 /* AboutMeViewModel.swift */,
 				3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */,
 				3B402AA32DA8F08F005C19DC /* SelfIntroductionViewModel.swift */,
+				3B76B5CE2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift */,
 				3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */,
-				3B8348132C74C0F800359E85 /* LeavePlantListModel.swift */,
 				3B7D8F3E2C75689C00008F22 /* WriteReviewViewModel.swift */,
 				3B7D8F4A2C75898B00008F22 /* ReceiveReviewViewModel.swift */,
 			);
@@ -933,7 +930,6 @@
 				3B402AA42DA8F08F005C19DC /* SelfIntroductionViewModel.swift in Sources */,
 				15F618B82C7C4FBF00A936D8 /* FourImagesTableViewCell.swift in Sources */,
 				3B6DE1AC2C72D24B009DD41A /* CareRecordViewController.swift in Sources */,
-				3B8348142C74C0F800359E85 /* LeavePlantListModel.swift in Sources */,
 				3B7D8F4D2C7589A200008F22 /* ReceiveReviewTableViewCell.swift in Sources */,
 				3B6D2C5E2C69A50F0076B1DA /* ProfileTableViewCell.swift in Sources */,
 				4F822E822C79FC9D007402CB /* FullScreenImageViewController.swift in Sources */,

@@ -8,13 +8,15 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Combine
 
 class LeavePlantListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let db = Firestore.firestore()
     var post: [Post] = []
     let viewModel = LeavePlantListViewModel()
-    
+    var cancellables = Set<AnyCancellable>()
+
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -36,7 +38,17 @@ class LeavePlantListViewController: UIViewController, UITableViewDelegate, UITab
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        fetchPostFirebase()
+        viewModel.$post
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newPosts in
+                self?.post = newPosts
+                self?.tableView.reloadData()
+                
+            }
+            .store(in: &cancellables)
+        
+        
+        viewModel.fetchPostFirebase()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,7 +78,7 @@ class LeavePlantListViewController: UIViewController, UITableViewDelegate, UITab
         cell.bodyLabel.text = currentPost.postBody
         cell.timeLabel.text = DateFormatter.localizedString(from: currentPost.updateDate, dateStyle: .short, timeStyle: .short)
         if let imageURL = currentPost.postImages?.first {
-            loadImage(from: imageURL) { image in
+            viewModel.loadImage(from: imageURL) { image in
                 DispatchQueue.main.async {
                     cell.plantImage.image = image ?? UIImage(named: "logo7")
                 }

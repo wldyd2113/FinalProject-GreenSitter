@@ -13,19 +13,7 @@ class LeavePlantListViewController: UIViewController, UITableViewDelegate, UITab
     
     let db = Firestore.firestore()
     var post: [Post] = []
-//    var postId: String?
-//    
-//    init(postId: String) {
-//        self.postId = postId
-//        super.init(nibName: nil, bundle: nil)
-//
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    
+    let viewModel = LeavePlantListViewModel()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()

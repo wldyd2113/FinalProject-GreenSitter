@@ -36,6 +36,7 @@
 		3B6DE1AE2C72D457009DD41A /* CareRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */; };
 		3B6DE1B02C72D483009DD41A /* CareRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AF2C72D483009DD41A /* CareRecordTableViewCell.swift */; };
 		3B72EAEA2DA2564600FA9ABB /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */; };
+		3B76B5CF2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76B5CE2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift */; };
 		3B7D8F3D2C75686700008F22 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F3C2C75686700008F22 /* WriteReviewViewController.swift */; };
 		3B7D8F3F2C75689C00008F22 /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F3E2C75689C00008F22 /* WriteReviewViewModel.swift */; };
 		3B7D8F492C75890A00008F22 /* ReceiveReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D8F482C75890A00008F22 /* ReceiveReviewViewController.swift */; };
@@ -181,6 +182,7 @@
 		3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordViewModel.swift; sourceTree = "<group>"; };
 		3B6DE1AF2C72D483009DD41A /* CareRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordTableViewCell.swift; sourceTree = "<group>"; };
 		3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
+		3B76B5CE2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeavePlantListViewModel.swift; sourceTree = "<group>"; };
 		3B7D8F3C2C75686700008F22 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		3B7D8F3E2C75689C00008F22 /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		3B7D8F482C75890A00008F22 /* ReceiveReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveReviewViewController.swift; sourceTree = "<group>"; };
@@ -434,6 +436,15 @@
 				97D1BE9A2C6C93CD00F7A983 /* NicknameViewController.swift */,
 			);
 			path = Nickname;
+			sourceTree = "<group>";
+		};
+		3B76B5CD2DAFA19C009B0DBC /* LeavePlanList */ = {
+			isa = PBXGroup;
+			children = (
+				3B8348112C74BF6600359E85 /* LeavePlantListViewController.swift */,
+				3B76B5CE2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift */,
+			);
+			path = LeavePlanList;
 			sourceTree = "<group>";
 		};
 		3BAD24642C77347A004C2DBA /* WebView */ = {
@@ -738,9 +749,9 @@
 				3B49574A2DA139B8009E3336 /* AboutMe */,
 				3B72EAE82DA2560700FA9ABB /* Nickname */,
 				3B402AA22DA8F04D005C19DC /* SelfIntroduction */,
+				3B76B5CD2DAFA19C009B0DBC /* LeavePlanList */,
 				3BAD24642C77347A004C2DBA /* WebView */,
 				3B6DE1AB2C72D24B009DD41A /* CareRecordViewController.swift */,
-				3B8348112C74BF6600359E85 /* LeavePlantListViewController.swift */,
 				3B7D8F3C2C75686700008F22 /* WriteReviewViewController.swift */,
 				3B7D8F482C75890A00008F22 /* ReceiveReviewViewController.swift */,
 			);
@@ -982,6 +993,7 @@
 				97D1BEC52C6C9DF400F7A983 /* PlanPlaceViewController.swift in Sources */,
 				3B6DE1B02C72D483009DD41A /* CareRecordTableViewCell.swift in Sources */,
 				3B596DFF2C6B462B00C71851 /* InformationTableCell.swift in Sources */,
+				3B76B5CF2DAFA1CB009B0DBC /* LeavePlantListViewModel.swift in Sources */,
 				58DD072D2C8941E1005FF41A /* ChatManager.swift in Sources */,
 				97934E032C62F89700B38E0A /* Message.swift in Sources */,
 				97934E1D2C62F8F000B38E0A /* ReviewViewModel.swift in Sources */,

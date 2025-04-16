@@ -31,7 +31,6 @@
 		3B596DFA2C6B461200C71851 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B596DF92C6B461200C71851 /* CustomTableCell.swift */; };
 		3B596DFF2C6B462B00C71851 /* InformationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B596DFE2C6B462B00C71851 /* InformationTableCell.swift */; };
 		3B61C6982C71CB1600337B66 /* SelfIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B61C6972C71CB1600337B66 /* SelfIntroductionViewController.swift */; };
-		3B61C69A2C71DCAD00337B66 /* SelfIntroductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B61C6992C71DCAD00337B66 /* SelfIntroductionViewModel.swift */; };
 		3B6D2C5E2C69A50F0076B1DA /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D2C5D2C69A50F0076B1DA /* ProfileTableViewCell.swift */; };
 		3B6DE1AC2C72D24B009DD41A /* CareRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AB2C72D24B009DD41A /* CareRecordViewController.swift */; };
 		3B6DE1AE2C72D457009DD41A /* CareRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */; };
@@ -177,7 +176,6 @@
 		3B596DF92C6B461200C71851 /* CustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
 		3B596DFE2C6B462B00C71851 /* InformationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableCell.swift; sourceTree = "<group>"; };
 		3B61C6972C71CB1600337B66 /* SelfIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIntroductionViewController.swift; sourceTree = "<group>"; };
-		3B61C6992C71DCAD00337B66 /* SelfIntroductionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIntroductionViewModel.swift; sourceTree = "<group>"; };
 		3B6D2C5D2C69A50F0076B1DA /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		3B6DE1AB2C72D24B009DD41A /* CareRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordViewController.swift; sourceTree = "<group>"; };
 		3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareRecordViewModel.swift; sourceTree = "<group>"; };
@@ -402,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				3B61C6972C71CB1600337B66 /* SelfIntroductionViewController.swift */,
-				3B402AA32DA8F08F005C19DC /* SelfIntroductionViewModel.swift */,
 			);
 			path = SelfIntroduction;
 			sourceTree = "<group>";
@@ -700,7 +697,7 @@
 				3B25346E2D93F8A400667398 /* ProfileViewModel.swift */,
 				3B49574B2DA13A16009E3336 /* AboutMeViewModel.swift */,
 				3B72EAE92DA2564600FA9ABB /* NicknameViewModel.swift */,
-				3B61C6992C71DCAD00337B66 /* SelfIntroductionViewModel.swift */,
+				3B402AA32DA8F08F005C19DC /* SelfIntroductionViewModel.swift */,
 				3B6DE1AD2C72D457009DD41A /* CareRecordViewModel.swift */,
 				3B8348132C74C0F800359E85 /* LeavePlantListModel.swift */,
 				3B7D8F3E2C75689C00008F22 /* WriteReviewViewModel.swift */,
@@ -916,7 +913,6 @@
 				97D1BEC42C6C9DF400F7A983 /* PlanDateTimeViewController.swift in Sources */,
 				97934E152C62F8DF00B38E0A /* SearchMapViewModel.swift in Sources */,
 				97934E432C63003C00B38E0A /* Colors.swift in Sources */,
-				3B61C69A2C71DCAD00337B66 /* SelfIntroductionViewModel.swift in Sources */,
 				15C8208A2C775ECB002991DE /* ImageDetailCollectionViewController.swift in Sources */,
 				97C729C62C81834D008567A8 /* DoubleExtension.swift in Sources */,
 				97D1BE812C6C8BBA00F7A983 /* ChatAdditionalButtonModel.swift in Sources */,

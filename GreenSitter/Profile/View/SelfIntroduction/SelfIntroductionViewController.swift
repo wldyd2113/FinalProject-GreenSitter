@@ -12,6 +12,7 @@ import FirebaseAuth
 class SelfIntroductionViewController: UIViewController {
     var user: User?
     let db = Firestore.firestore()
+    let viewModel = SelfIntroductionViewModel()
     
     lazy var titleLabel: UILabel = {
         let label =  UILabel()
@@ -48,7 +49,7 @@ class SelfIntroductionViewController: UIViewController {
         button.setTitle("완료", for: .normal)
         button.backgroundColor = UIColor(named: "DominentColor")
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(completeButtonTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -83,9 +84,31 @@ class SelfIntroductionViewController: UIViewController {
             completeButton.widthAnchor.constraint(equalToConstant: 350),
             completeButton.heightAnchor.constraint(equalToConstant: 45)
         ])
-        fetchUserFirebase()
+        viewModel.fetchUserFirebase { [weak self] aboutMe in
+            DispatchQueue.main.async {
+                self?.introductionTextView.text = aboutMe
+            }
+        }
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    @objc func closeButtonTap() {
+        dismiss(animated: true, completion: nil)
+    }
+    @objc func completeButtonTapped() {
+        viewModel.aboutMe = introductionTextView.text //텍스트 전달
+        viewModel.completeButtonTap { success in
+            if success {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            else {
+                print("데이터 가져오기 실패")
+            }
+            
+        }
+    }
+    
 }
